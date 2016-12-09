@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Session 8 | Assignment 1</title>
+	<style type="text/css">
+		.my-forms-page {
+			width: 1170px;
+			display: block;
+			margin: 0 auto;
+			background-color: lightgray;
+			padding: 15px;
+			font-family: 'Arial', serif;
+		}
+
+		.clearfix {
+		    overflow: auto;
+		    zoom: 1;
+		}
+
+		.registration-form {
+			float: left;
+			border: 2px solid #555555;
+			width: 500px;
+			padding: 25px 35px 25px 25px;
+		}
+
+		.login-form {
+			float: right;
+			border: 2px solid #555555;
+			width: 500px;
+			padding: 25px;
+			background-color: orange;
+			height: 345px;
+		}
+
+		.registration-form h3, .login-form h3 {
+			color: gray;
+			text-transform: uppercase;
+		}
+
+		.registration-form h3 span, .login-form h3 span {
+			color: blue;
+		}
+
+		.registration-form form input {
+			width: 100%;
+			margin: 10px 0;
+			height: 30px;
+			border: 1px solid #eee;
+			border-radius: 5px;
+			padding: 5px;
+		}
+
+		button.register-btn, button.login-btn {
+			float: right;
+			background-color: transparent;
+			border: 2px solid #234465; 
+			padding: 8px 25px;
+			color: #234465;
+			font-size: 16px;
+		}
+
+		button.register-btn:hover, button.login-btn:hover {
+			border-color: blue;
+			color: blue;
+		}
+
+		.login-form label {
+			font-size: 18px;
+			color: #222;
+		}
+
+		.login-form > form > label > input {
+			width: 100%;
+			height: 30px;
+			border: 1px solid gray;
+			border-radius: 5px;
+			padding: 5px;
+		}
+
+		.login-form > form > input[type=checkbox] {
+			color: #222;
+			font-size: 12px;
+		}
+
+		div.remember-me {
+			float: left;
+		}
+
+		div.login-button {
+			float: right;
+		}
+
+		div.login-button ul li {
+			list-style-type: none;
+		}
+
+		a#forgot-pwd-link {
+			font-size: 12px;
+			font-style: italic;
+			color: #fff;
+		}
+
+		p#pwdRemember {
+			font-size: 10px;
+			padding: 0;
+			margin: 0;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<section class="my-forms-page clearfix">
+		<section class="page-header">
+			<h1><center>Enter the System</center></h1>
+			<p>It is necessary to Login in your account in order to signup for a Course.</p>	
+		</section>		
+		<section class="registration-form">
+			<h3>Are you New? <span>Register</span></h3>
+			<form>
+				<input type="text" id="username" name="username" placeholder="Username" required><br>
+				<input type="email" id="email" name="email" placeholder="Email" required><br>
+				<input type="password" id="password" name="password" placeholder="Password" onfocusout="myFunction();" required><br>
+				<input type="password" id="retype" name="retype-password" placeholder="Confirm Password" required><br>
+				<button class="register-btn" onclick="onRegisterBtnClick();">Register</button>
+			</form>
+		</section>
+		<section class="login-form">
+			<h3>Already a Member? <span>Login</span></h3>
+			<form>
+				<label>Username: <br>
+					<input type="text" name="username" id="loginUsername" placeholder="Username" required>
+				</label><br><br>
+				<label>Password: <br>
+					<input type="password" name="password" id="loginPassword" placeholder="Password" required>
+				</label><br><br>
+				<div class="check-login-block">
+					<div class="remember-me">
+						<input type="checkbox" name="rememberme" id="rememberme" onclick="onRememberClick();">Remember me<br>	
+						<p id="pwdRemember"></p>
+					</div>
+					<div class="login-button">
+						<ul>
+							<li><button class="login-btn" onclick="onLoginBtnClickHandler();">Login</button></li>
+							<li><a href="#" id="forgot-pwd-link">Forgot Password?</a></li>
+						</ul>						
+					</div>
+				</div>				
+			</form>
+		</section>
+	</section>
+
+	<script type="text/javascript">
+		function myFunction() {
+			var password = document.getElementById("password").value;
+
+			if(password.length <= 6) {
+				alert("Password should have min 6 characters");
+			}
+		}
+
+		function onRegisterBtnClick() {
+			var password1 = document.getElementById('password').value;
+			var password2 = document.getElementById('retype').value;
+			if(password1 !== password2) {
+		    	alert('Passwords do not match. Please check and Try Again');
+		    } 
+		}
+
+		function onLoginBtnClickHandler() {
+			var username = document.getElementById("loginUsername").value;
+			var password = document.getElementById("loginPassword").value;
+
+			// Checks the condition if the Username and Password are same
+			if(username == '' || password == '') {
+				alert("Please Enter Username and password");
+			}
+			else
+			{
+				if(username !== password) {
+					alert("Please enter valid username and password");
+					document.getElementById("loginUsername").focus();	
+				}
+				else {
+					alert("Your Login Successful");
+					reDirect();
+				}				
+			}
+			
+		}
+
+		function reDirect() {
+			window.open("http://www.google.com");
+		}
+
+		function onRememberClick() {
+			if(document.getElementById("rememberme").checked) {
+				document.getElementById("pwdRemember").innerHTML = "Your Password will be Remembered";
+			}
+			else {
+				document.getElementById("pwdRemember").innerHTML = "";	
+			}			
+		}
+	</script>
+</body>
+</html>
